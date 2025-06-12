@@ -1,5 +1,5 @@
 from flask_login import current_user
-from flask_wtf.file import FileAllowed, FileField
+from flask_wtf.file import FileAllowed, FileField, FileRequired
 from flask_wtf import FlaskForm
 from sonnet.models import User
 from wtforms import BooleanField, PasswordField, TextAreaField, StringField, SubmitField
@@ -49,5 +49,5 @@ class UpdateAccountForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
-    track = FileField('Choose Track', validators=[FileAllowed(['mp3'])])
+    track = FileField('Choose Track', validators=[FileRequired(), FileAllowed(['mp3'])])
     submit = SubmitField('Post')
